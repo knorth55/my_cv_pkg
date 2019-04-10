@@ -12,6 +12,12 @@ find_package(catkin REQUIRED COMPONENTS
   image_transport
 )
 
+find_package(OpenCV 3 REQUIRED
+  COMPONENTS
+    opencv_highgui
+    opencv_features2d
+  CONFIG
+)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -106,6 +112,7 @@ catkin_package(
 #  LIBRARIES my_cv_pkg
 #  CATKIN_DEPENDS cv_bridge image_transport
 #  DEPENDS system_lib
+  DEPENDS OpenCV
 )
 
 ###########
@@ -117,6 +124,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -135,7 +143,7 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/my_cv_pkg_node.cpp)
 
 add_executable(my_cv_pkg_node src/my_cv_pkg_node.cpp)
-target_link_libraries(my_cv_pkg_node ${catkin_LIBRARIES})
+target_link_libraries(my_cv_pkg_node ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
