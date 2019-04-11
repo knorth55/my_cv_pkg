@@ -10,6 +10,7 @@ project(my_cv_pkg)
 find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   image_transport
+  opencv_apps
 )
 
 ## System dependencies are found with CMake's conventions
